@@ -85,8 +85,6 @@ ngAfterViewChecked() {
    this.formValues.ID = this.editPetForm.get('ID').value
    this.formValues.description = this.editPetForm.get('description').value
    this.myService.infosPet[this.myService.selectedRowIndex] = this.formValues
-   console.log(this.formValues)
-   console.log(this.myService.infosPet)
   }
 
 }
