@@ -15,7 +15,6 @@ export class MyService {
   }
   addInfo(informations:any){
     this.infosPet.push(informations)
-    console.log(this.infosPet)
   }
   
   getListLength(){
