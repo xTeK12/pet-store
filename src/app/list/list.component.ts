@@ -44,11 +44,12 @@ ngAfterViewInit(){
 }
 
 filterList(){
-  if (this.selectedStatus !== 'all') {
-    this.filteredList = this.myService.infosPet.filter(item => item.status === this.selectedStatus);
+  if (this.selectedStatus === 'all') {
+    this.filteredList = this.myService.infosPet
   }
   else{
-    this.filteredList = this.myService.infosPet
+    this.filteredList = this.myService.infosPet.filter(item => item.status === this.selectedStatus);
+
   }
 }
 onDelete(rowIndex:number){
@@ -72,7 +73,7 @@ confirmDelete(){
     setTimeout(() =>{
       this.messageRemove=false
     },1000)
-    this.myService.infosPet=[]
+    // this.myService.infosPet=[]
   }
 }
 
