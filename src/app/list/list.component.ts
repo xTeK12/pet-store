@@ -94,7 +94,6 @@ onView(rowIndex:number){
 onEdit(rowIndex:number){
   this.selectedRowIndex=rowIndex
   this.myService.selectedRowIndex = rowIndex
-  console.log(this.selectedRowIndex)
   this.selectedRowData=this.filteredList[rowIndex]
   if(this.selectedRowIndex>-1){
     this.myService.singlePetInfo=[]
