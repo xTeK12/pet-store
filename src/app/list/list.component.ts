@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MyService } from 'src/service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -20,17 +20,12 @@ selectedRowData: any = null
 messageRemove = false
 
 
-
 constructor(private myService:MyService,
   private route: ActivatedRoute, private router: Router){
 }
 
 ngOnInit(){
-  this.itemList= this.myService.itemsList
-  this.filteredList=this.itemList
-  this.editedList=this.myService.editList
-
-  
+  this.filteredList=this.myService.infosPet
 }
 
 
@@ -49,10 +44,11 @@ ngAfterViewInit(){
 }
 
 filterList(){
-  if (this.selectedStatus === 'all') {
-    this.filteredList = this.itemList;
-  } else {
-    this.filteredList = this.itemList.filter(item => item.status === this.selectedStatus);
+  if (this.selectedStatus !== 'all') {
+    this.filteredList = this.myService.infosPet.filter(item => item.status === this.selectedStatus);
+  }
+  else{
+    this.filteredList = this.myService.infosPet
   }
 }
 onDelete(rowIndex:number){
@@ -89,20 +85,21 @@ onView(rowIndex:number){
   this.selectedRowIndex=rowIndex
   this.selectedRowData=this.filteredList[rowIndex]
   if(this.selectedRowIndex>-1){
-    this.myService.infosPet=[]
-    this.myService.addInfo(this.selectedRowData)
+    this.myService.singlePetInfo=[]
+    this.myService.addPetInfo(this.selectedRowData)
     this.router.navigate(['/visualization'])
   }
 }
 onEdit(rowIndex:number){
   this.selectedRowIndex=rowIndex
+  this.myService.selectedRowIndex = rowIndex
+  console.log(this.selectedRowIndex)
   this.selectedRowData=this.filteredList[rowIndex]
   if(this.selectedRowIndex>-1){
-    this.myService.addInfo(this.selectedRowData)
+    this.myService.singlePetInfo=[]
+    this.myService.addPetInfo(this.selectedRowData)
     this.router.navigate(['/edit'])
   }
-
 }
-
 }
 

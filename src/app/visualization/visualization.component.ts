@@ -14,7 +14,7 @@ infoPet:any[]=[]
   constructor(private myService:MyService){}
 
   ngOnInit(){
-this.infoPet=this.myService.infosPet
+this.infoPet=this.myService.singlePetInfo
   }
 
 }

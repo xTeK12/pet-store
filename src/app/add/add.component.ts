@@ -92,7 +92,7 @@ this.formValues.status = this.petForm.get('status').value
 this.formValues.ID = this.petForm.get('ID').value
 this.formValues.description = this.petForm.get('description').value
 if(this.formValues.name!=='' && this.formValues.status!==''){
-  this.myService.addItem(this.formValues)
+  this.myService.addInfo(this.formValues)
   this.formValues={}
 }
 

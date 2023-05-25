@@ -46,7 +46,7 @@ export class EditComponent implements OnInit,AfterViewChecked{
   }
   ngOnInit(){
    
-    this.infoPet=this.myService.infosPet
+    this.infoPet=this.myService.singlePetInfo
   }
 
   onInputChange(){
@@ -60,7 +60,7 @@ export class EditComponent implements OnInit,AfterViewChecked{
 
 ngAfterViewChecked() {
     
-    // this.cdr.detectChanges()
+    this.cdr.detectChanges()
 }  
 
   onSave(){
@@ -78,12 +78,15 @@ ngAfterViewChecked() {
        this.router.navigate(['/list'])
      },1000)
    }
+   this.formValues.index = this.myService.selectedRowIndex+1
    this.formValues.name = this.editPetForm.get('name').value
    this.formValues.category = this.editPetForm.get('category').value
    this.formValues.status = this.editPetForm.get('status').value
    this.formValues.ID = this.editPetForm.get('ID').value
    this.formValues.description = this.editPetForm.get('description').value
+   this.myService.infosPet[this.myService.selectedRowIndex] = this.formValues
    console.log(this.formValues)
+   console.log(this.myService.infosPet)
   }
 
 }

@@ -5,23 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MyService {
-  itemsList: any[] = [];
+  singlePetInfo: any[] = [];
   infosPet:any[] = []
   editList:any[]=[]
+  selectedRowIndex:number = -1
 
-  addItem(item: any) {
-    this.itemsList.push(item)
+  addPetInfo(informations:any){
+    this.singlePetInfo.push(informations)
   }
-
-
   addInfo(informations:any){
     this.infosPet.push(informations)
+    console.log(this.infosPet)
   }
   
   getListLength(){
-    return this.itemsList.length
+    return this.infosPet.length
   }
 getList(){
-  return this.itemsList
+  return this.infosPet
 }
 }
