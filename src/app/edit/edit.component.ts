@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl,FormGroup, Validators } from '@angular/forms';
+import {  AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { MyService } from 'src/service';
 import {Router} from '@angular/router';
 
@@ -9,15 +9,15 @@ import {Router} from '@angular/router';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent {
+export class EditComponent implements OnInit,AfterViewChecked{
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private myService:MyService){}
+  constructor(private router:Router, private myService:MyService, private cdr:ChangeDetectorRef){}
   
   messageSuccess:boolean = false
   messageWarning:boolean = false
   infoPet:any[]=[]
   formValues:any = {
-  
+
   }
   
   editPetForm: FormGroup = new FormGroup({
@@ -27,7 +27,6 @@ export class EditComponent {
     status: new FormControl('',Validators.required),
     category: new FormControl(''),
     description: new FormControl(''),
-    file: new FormControl('')
   })
 
   get name(){
@@ -45,23 +44,10 @@ export class EditComponent {
   get description(){
     return this.editPetForm.get('description')
   }
-  get file(){
-    return this.editPetForm.get('file')
-  }
   ngOnInit(){
-    this.editPetForm = this.formBuilder.group({
-      name:'',
-      category: '',
-      status: '',
-      ID: '',
-      description: '',
-      file: '',
-    })
+   
     this.infoPet=this.myService.infosPet
   }
-
-
-  
 
   onInputChange(){
     if(this.editPetForm.valid){
@@ -72,7 +58,13 @@ export class EditComponent {
     }
   }
 
+ngAfterViewChecked() {
+    
+    // this.cdr.detectChanges()
+}  
+
   onSave(){
+    
     if(this.editPetForm.valid){
      this.messageSuccess=true
      this.messageWarning=false
@@ -91,9 +83,7 @@ export class EditComponent {
    this.formValues.status = this.editPetForm.get('status').value
    this.formValues.ID = this.editPetForm.get('ID').value
    this.formValues.description = this.editPetForm.get('description').value
-   this.formValues.file = this.editPetForm.get('file').value
-
+   console.log(this.formValues)
   }
- 
 
 }

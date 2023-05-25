@@ -16,7 +16,6 @@ export class AddComponent {
     status: new FormControl('available',Validators.required),
     category: new FormControl('not selected'),
     description: new FormControl(''),
-    file: new FormControl('')
   })
 
   get name(){
@@ -33,9 +32,6 @@ export class AddComponent {
   }
   get description(){
     return this.petForm.get('description')
-  }
-  get file(){
-    return this.petForm.get('file')
   }
 
 formValues:any = {
@@ -61,7 +57,6 @@ ngOnInit(){
     status: 'available',
     ID: '',
     description: '',
-    file: '',
   })
 }
 
@@ -96,7 +91,6 @@ this.formValues.category = this.petForm.get('category').value
 this.formValues.status = this.petForm.get('status').value
 this.formValues.ID = this.petForm.get('ID').value
 this.formValues.description = this.petForm.get('description').value
-this.formValues.file = this.petForm.get('file').value
 if(this.formValues.name!=='' && this.formValues.status!==''){
   this.myService.addItem(this.formValues)
   this.formValues={}
