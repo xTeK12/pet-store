@@ -73,7 +73,7 @@ confirmDelete(){
     setTimeout(() =>{
       this.messageRemove=false
     },1000)
-    // this.myService.infosPet=[]
+    
   }
 }
 
